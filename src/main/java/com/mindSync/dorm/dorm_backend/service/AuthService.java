@@ -2,7 +2,7 @@ package com.mindSync.dorm.dorm_backend.service;
 
 import com.mindSync.dorm.dorm_backend.dto.AuthRequest;
 import com.mindSync.dorm.dorm_backend.dto.RegisterRequest;
-import com.mindSync.dorm.dorm_backend.entity.User;
+import com.mindSync.dorm.dorm_backend.model.User;
 import com.mindSync.dorm.dorm_backend.repository.UserRepository;
 import com.mindSync.dorm.dorm_backend.config.JwtUtil;
 import org.springframework.http.ResponseEntity;

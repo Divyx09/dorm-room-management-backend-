@@ -3,6 +3,7 @@ package com.mindSync.dorm.dorm_backend.controller;
 import com.mindSync.dorm.dorm_backend.dto.AuthRequest;
 import com.mindSync.dorm.dorm_backend.dto.RegisterRequest;
 import com.mindSync.dorm.dorm_backend.service.AuthService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +20,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(@RequestBody RegisterRequest request) {
+    public String register(@Valid @RequestBody RegisterRequest request) {
         return authService.register(request);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String,String>> login(@RequestBody AuthRequest request) {
+    public ResponseEntity<Map<String,String>> login(@Valid @RequestBody AuthRequest request) {
         System.out.println("request passed in mapping");
         return authService.authenticate(request);
     }

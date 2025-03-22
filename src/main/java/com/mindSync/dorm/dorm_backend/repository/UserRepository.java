@@ -1,6 +1,6 @@
 package com.mindSync.dorm.dorm_backend.repository;
 
-import com.mindSync.dorm.dorm_backend.entity.User;
+import com.mindSync.dorm.dorm_backend.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

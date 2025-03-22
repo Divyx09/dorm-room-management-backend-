@@ -1,7 +1,7 @@
 package com.mindSync.dorm.dorm_backend.config;
 
 import io.jsonwebtoken.*;
-import com.mindSync.dorm.dorm_backend.entity.User;
+import com.mindSync.dorm.dorm_backend.model.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;

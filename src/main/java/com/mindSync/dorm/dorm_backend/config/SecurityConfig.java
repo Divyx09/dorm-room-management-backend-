@@ -28,6 +28,7 @@ public class SecurityConfig {
                         .requestMatchers("/auth/register", "/auth/login").permitAll()
                         .requestMatchers("/api/admin/dashboard").hasRole("ADMIN")
                         .requestMatchers("/api/user/profile").hasRole("USER")
+                        .requestMatchers("/api/admin/room/addroom").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

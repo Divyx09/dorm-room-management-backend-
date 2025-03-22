@@ -1,4 +1,4 @@
-package com.mindSync.dorm.dorm_backend.entity;
+package com.mindSync.dorm.dorm_backend.model;
 
 import jakarta.persistence.*;
 import lombok.*;
