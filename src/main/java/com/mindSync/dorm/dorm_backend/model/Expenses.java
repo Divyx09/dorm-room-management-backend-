@@ -15,27 +15,42 @@ import java.time.LocalDateTime;
 public class Expenses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long expenseId;
 
 
     private String purchasedBy;
 
-    private Double myContribution;
+    private double myContribution;
 
-    private Double totalAmount;
+    private double myRemaining;
 
-    private Double contributionAmount;
+    private double totalAmount;
+
+    private Double teammateContributionAmount;
 
     private String teamMateName;
+
+    private String roomNumber;
 
     private String description;
 
     private LocalDateTime createdAt;
 
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
     private LocalDateTime updatedAt;
+
+    private String updatedBy;
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
 
     @ManyToOne
     @JoinColumn(name = "user_id") // Foreign key referencing User entity
     private User user;
+
 
 }

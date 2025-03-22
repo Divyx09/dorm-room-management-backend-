@@ -1,5 +1,6 @@
 package com.mindSync.dorm.dorm_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 public class Services {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long id;
+    public long serviceId;
 
     public String serviceName;
 
@@ -29,6 +30,7 @@ public class Services {
 
     @ManyToOne
     @JoinColumn(name = "user_id") // Foreign key referencing User entity
+    @JsonBackReference
     private User user;
 
 }

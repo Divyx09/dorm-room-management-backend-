@@ -36,6 +36,7 @@ public class AuthService {
             return "User already exists with same email id.";
         }
         User user = User.builder()
+                .name(request.getName())
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(request.getRole())

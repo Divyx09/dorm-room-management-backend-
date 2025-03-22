@@ -1,23 +1,21 @@
 package com.mindSync.dorm.dorm_backend.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 
 @Getter
 public class ExpenseRequest {
 
     @NotBlank(message="not blank")
-    private String purchasedBy;
+    private String description;
 
-    @NotBlank(message="not blank")
-    private Double myContribution;
+    @NotNull(message="not blank")
+    private double myContribution;
 
-    @NotBlank(message="not blank")
-    private Double totalAmount;
+    @NotNull(message="not blank")
+    private double totalAmount;
 
-    @NotBlank(message="not blank")
-    private Double contributionAmount;
 
-    @NotBlank(message="not blank")
-    private String teamMateName;
+
 }
