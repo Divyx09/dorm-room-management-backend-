@@ -18,6 +18,10 @@ public class RoomService {
 
     public String addRoom(RoomRequest request)
     {
+        if (roomRepository.findByRoomNumber(request.getRoomNumber()).isPresent()) {
+            return "Room already exists with the same room number";
+        }
+
         Room room = Room.builder()
                 .roomNumber(request.getRoomNumber())
                 .floorNo(request.getMaxCapacity())
