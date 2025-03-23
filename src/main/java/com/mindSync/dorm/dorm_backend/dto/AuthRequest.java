@@ -7,16 +7,16 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AuthRequest {
-    @NotNull(message="email should not blank")
-    @Email(message="email should be in the format")
+//    @NotNull(message="email should not blank")
+//    @Email(message="email should be in the format")
     private String username;
 
-    @NotBlank(message = "Password cannot be blank")
-    @Size(min = 8, max = 20, message = "Password must be 8-20 characters long")
-    @Pattern(
-            regexp = "^(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$",
-            message = "Password must contain at least one uppercase letter, one number, and one special character"
-    )
+//    @NotBlank(message = "Password cannot be blank")
+//    @Size(min = 8, max = 20, message = "Password must be 8-20 characters long")
+//    @Pattern(
+//            regexp = "^(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,20}$",
+//            message = "Password must contain at least one uppercase letter, one number, and one special character"
+//    )
     private String password;
 
     public void setUsername(String username) {

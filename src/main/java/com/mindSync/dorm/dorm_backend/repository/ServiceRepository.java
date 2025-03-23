@@ -5,7 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Optional;
+
 public interface ServiceRepository extends JpaRepository<Services,Long> {
+    boolean existsByServiceName(String serviceName);
 //    @Query("SELECT COUNT(p) > 0 FROM services p WHERE p.name = :name AND p.user.id = :userId")
 //    boolean existsByServiceAndUserId(@Param("name") String name, @Param("sellerId") Long userId);
 

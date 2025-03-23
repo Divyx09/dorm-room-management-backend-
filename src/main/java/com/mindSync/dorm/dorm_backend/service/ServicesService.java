@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -31,12 +32,12 @@ public class ServicesService {
         String userEmail = authentication.getName(); // Retrieves email of logged-in seller
 
         User user = userRepository.findByUsername(userEmail)
-                .orElseThrow(() -> new RuntimeException("Seller not found"));
+                .orElseThrow(() -> new RuntimeException("user not found"));
 
-//        if (serviceRepository.existsByServiceAndUserId(serviceRequest.getServiceName(), user.getId())) {
-//
-//            return "service with the same name.";
-//        }
+        if (serviceRepository.existsByServiceName(serviceRequest.getServiceName())) {
+
+            return "service with the same name.";
+        }
 
         Services services = Services.builder()
                 .serviceName(serviceRequest.getServiceName())
@@ -49,5 +50,9 @@ public class ServicesService {
 
         serviceRepository.save(services);
                 return "Service saved successfully";
+    }
+
+    public List<Services> getallservices() {
+        return serviceRepository.findAll();
     }
 }

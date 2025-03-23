@@ -16,7 +16,7 @@ public class Request {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long requestId;
 
     @Column(name = "request_type")
     private String requestType;
@@ -26,6 +26,8 @@ public class Request {
 
     @Column(name = "status")
     private String status;
+
+    private String title;
 
     @Column(name = "createdAt")
     private LocalDateTime createdAt;
