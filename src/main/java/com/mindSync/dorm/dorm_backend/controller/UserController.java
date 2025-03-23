@@ -1,13 +1,7 @@
 package com.mindSync.dorm.dorm_backend.controller;
 
-import com.mindSync.dorm.dorm_backend.dto.PrefrenceDto;
-import com.mindSync.dorm.dorm_backend.dto.ProfileDetailsDto;
-import com.mindSync.dorm.dorm_backend.dto.RequestDto;
-import com.mindSync.dorm.dorm_backend.dto.UserRequest;
-import com.mindSync.dorm.dorm_backend.model.Prefrence;
-import com.mindSync.dorm.dorm_backend.model.ProfileDetails;
-import com.mindSync.dorm.dorm_backend.model.Request;
-import com.mindSync.dorm.dorm_backend.model.Services;
+import com.mindSync.dorm.dorm_backend.dto.*;
+import com.mindSync.dorm.dorm_backend.model.*;
 import com.mindSync.dorm.dorm_backend.repository.RequestRepository;
 import com.mindSync.dorm.dorm_backend.service.PrefrenceService;
 import com.mindSync.dorm.dorm_backend.service.RequestService;
@@ -81,6 +75,12 @@ public class UserController {
     @GetMapping("/getuserrequests")
     public List<RequestDto> getUsersRequests() {
         return requestService.getUsersRequests();
+    }
+
+    @GetMapping("/getusertasks")
+    public List<TaskRequest> findTasksForUser()
+    {
+        return userService.findTasksForUser();
     }
 
 

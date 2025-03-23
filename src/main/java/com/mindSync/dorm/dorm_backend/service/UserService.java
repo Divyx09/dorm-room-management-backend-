@@ -2,13 +2,12 @@ package com.mindSync.dorm.dorm_backend.service;
 
 import com.mindSync.dorm.dorm_backend.dto.ProfileDetailsDto;
 import com.mindSync.dorm.dorm_backend.dto.RequestDto;
+import com.mindSync.dorm.dorm_backend.dto.TaskRequest;
 import com.mindSync.dorm.dorm_backend.dto.UserRequest;
+import com.mindSync.dorm.dorm_backend.model.Task;
 import com.mindSync.dorm.dorm_backend.model.User;
 import com.mindSync.dorm.dorm_backend.model.ProfileDetails;
-import com.mindSync.dorm.dorm_backend.repository.RequestRepository;
-import com.mindSync.dorm.dorm_backend.repository.RoomRepository;
-import com.mindSync.dorm.dorm_backend.repository.ProfileDetailsRepository;
-import com.mindSync.dorm.dorm_backend.repository.UserRepository;
+import com.mindSync.dorm.dorm_backend.repository.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,12 +28,15 @@ public class UserService {
     final RequestRepository requestRepository;
     final ProfileDetailsRepository userDetailsRepository;
 
-    UserService(UserRepository userRepository, RoomRepository roomRepository, RequestRepository requestRepository, ProfileDetailsRepository userDetailsRepository)
+    final TaskRepository taskRepository;
+
+    UserService(UserRepository userRepository, TaskRepository taskRepository,RoomRepository roomRepository, RequestRepository requestRepository, ProfileDetailsRepository userDetailsRepository)
     {
         this.userRepository = userRepository;
         this.roomRepository = roomRepository;
         this.requestRepository = requestRepository;
         this.userDetailsRepository = userDetailsRepository;
+        this.taskRepository = taskRepository;
     }
 
     public String allocalteRoom(UserRequest userRequest)
@@ -92,5 +94,15 @@ public class UserService {
     public List<User> getallusers() {
 
         return userRepository.findAll();
+    }
+
+    public List<TaskRequest> findTasksForUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return taskRepository.findTasksForUser(user.getId());
     }
 }

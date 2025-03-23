@@ -36,6 +36,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/user/profile").hasRole("USER")
                         .requestMatchers("/api/user/addrequest").hasAnyRole("USER","ADMIN")
                         .requestMatchers("/api/user/getuserrequests").hasRole("USER")
+                        .requestMatchers("/api/user/getusertasks").hasRole("USER")
                         .requestMatchers("/api/user/expenses/addexpenses").hasRole("USER")
                         .requestMatchers("/api/user/roomrequest").hasRole("USER")
                         .requestMatchers("/api/user/addprefrences").hasRole("USER")
