@@ -1,14 +1,18 @@
 package com.mindSync.dorm.dorm_backend.service;
 
 import com.mindSync.dorm.dorm_backend.dto.ProfileDetailsDto;
+import com.mindSync.dorm.dorm_backend.dto.RequestDto;
 import com.mindSync.dorm.dorm_backend.dto.UserRequest;
-import com.mindSync.dorm.dorm_backend.model.Prefrence;
 import com.mindSync.dorm.dorm_backend.model.User;
 import com.mindSync.dorm.dorm_backend.model.ProfileDetails;
+import com.mindSync.dorm.dorm_backend.repository.RequestRepository;
 import com.mindSync.dorm.dorm_backend.repository.RoomRepository;
 import com.mindSync.dorm.dorm_backend.repository.ProfileDetailsRepository;
 import com.mindSync.dorm.dorm_backend.repository.UserRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -22,12 +26,14 @@ public class UserService {
 
     final UserRepository userRepository;
     final RoomRepository roomRepository;
+    final RequestRepository requestRepository;
     final ProfileDetailsRepository userDetailsRepository;
 
-    UserService(UserRepository userRepository, RoomRepository roomRepository, ProfileDetailsRepository userDetailsRepository)
+    UserService(UserRepository userRepository, RoomRepository roomRepository, RequestRepository requestRepository, ProfileDetailsRepository userDetailsRepository)
     {
         this.userRepository = userRepository;
         this.roomRepository = roomRepository;
+        this.requestRepository = requestRepository;
         this.userDetailsRepository = userDetailsRepository;
     }
 
@@ -84,11 +90,6 @@ public class UserService {
     }
 
     public List<User> getallusers() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String userEmail = authentication.getName(); // Retrieves email of logged-in seller
-
-        User user = userRepository.findByUsername(userEmail)
-                .orElseThrow(() -> new RuntimeException("user not found"));
 
         return userRepository.findAll();
     }

@@ -2,13 +2,18 @@ package com.mindSync.dorm.dorm_backend.controller;
 
 import com.mindSync.dorm.dorm_backend.dto.PrefrenceDto;
 import com.mindSync.dorm.dorm_backend.dto.ProfileDetailsDto;
+import com.mindSync.dorm.dorm_backend.dto.RequestDto;
 import com.mindSync.dorm.dorm_backend.dto.UserRequest;
 import com.mindSync.dorm.dorm_backend.model.Prefrence;
 import com.mindSync.dorm.dorm_backend.model.ProfileDetails;
+import com.mindSync.dorm.dorm_backend.model.Request;
 import com.mindSync.dorm.dorm_backend.model.Services;
+import com.mindSync.dorm.dorm_backend.repository.RequestRepository;
 import com.mindSync.dorm.dorm_backend.service.PrefrenceService;
+import com.mindSync.dorm.dorm_backend.service.RequestService;
 import com.mindSync.dorm.dorm_backend.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,10 +28,13 @@ public class UserController {
     final UserService userService;
     final PrefrenceService prefrenceService;
 
-    UserController(UserService userService,PrefrenceService prefrenceService)
+    final RequestService requestService;
+
+    UserController(UserService userService,PrefrenceService prefrenceService,RequestService requestService)
     {
         this.userService = userService;
         this.prefrenceService = prefrenceService;
+        this.requestService = requestService;
     }
 
     @GetMapping("/profile")
@@ -69,5 +77,12 @@ public class UserController {
 //    {
 //        return prefrenceService.getMatchedPreferenceUsers();
 //    }
+
+    @GetMapping("/getuserrequests")
+    public List<RequestDto> getUsersRequests() {
+        return requestService.getUsersRequests();
+    }
+
+
 
 }

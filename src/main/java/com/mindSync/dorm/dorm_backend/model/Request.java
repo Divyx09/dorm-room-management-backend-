@@ -27,6 +27,8 @@ public class Request {
     @Column(name = "status")
     private String status;
 
+    private String title;
+
     @Column(name = "createdAt")
     private LocalDateTime createdAt;
 

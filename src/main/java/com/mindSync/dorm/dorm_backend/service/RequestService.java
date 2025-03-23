@@ -5,11 +5,14 @@ import com.mindSync.dorm.dorm_backend.model.Request;
 import com.mindSync.dorm.dorm_backend.model.User;
 import com.mindSync.dorm.dorm_backend.repository.RequestRepository;
 import com.mindSync.dorm.dorm_backend.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class RequestService {
@@ -35,6 +38,7 @@ public class RequestService {
                 .requestType(requestDto.getRequestType())
                 .description(requestDto.getDescription())
                 .status(requestDto.getStatus())
+                .title(requestDto.getTitle())
                 .createdAt(LocalDateTime.now())
                 .updatedAt(LocalDateTime.now())
                 .user(user)
@@ -44,4 +48,15 @@ public class RequestService {
 
         return "Request added successfully";
     }
+
+    public List<RequestDto> getUsersRequests() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return requestRepository.findRequestsByUserId(user.getId());
+    }
+
 }

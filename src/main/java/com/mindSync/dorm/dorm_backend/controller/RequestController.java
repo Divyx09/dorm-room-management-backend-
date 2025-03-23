@@ -3,13 +3,11 @@ package com.mindSync.dorm.dorm_backend.controller;
 import com.mindSync.dorm.dorm_backend.dto.RequestDto;
 import com.mindSync.dorm.dorm_backend.service.RequestService;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
+@CrossOrigin(origins="http://lcoalhost:5173")
 public class RequestController {
 
     final RequestService requestService;
