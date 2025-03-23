@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface RequestRepository extends JpaRepository<Request,Long> {
+
+    Optional<Request> findByTitleAndUser(String title, User user);
     @Query("SELECT new com.mindSync.dorm.dorm_backend.dto.RequestDto(" +
             "r.requestType, r.title, r.description, r.status) " + // Remove AS aliases
             "FROM Request r WHERE r.user.id = :userId")

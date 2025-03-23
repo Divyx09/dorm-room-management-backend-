@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RequestService {
@@ -33,6 +34,13 @@ public class RequestService {
 
         User user = userRepository.findByUsername(userEmail)
                 .orElseThrow(() -> new RuntimeException("Seller not found"));
+
+        // Check if a request with the same title already exists for the user
+        Optional<Request> existingRequest = requestRepository.findByTitleAndUser(requestDto.getTitle(), user);
+
+        if (existingRequest.isPresent()) {
+            return "A request with the same title already exists for this user.";
+        }
 
         Request request = Request.builder()
                 .requestType(requestDto.getRequestType())
