@@ -1,5 +1,7 @@
 package com.mindSync.dorm.dorm_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -37,6 +39,8 @@ public class User implements UserDetails {
         return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role.name()));
     }
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Task> tasks;
 
 
     @Override

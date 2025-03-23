@@ -11,6 +11,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin(origins = "http://localhost:5173")
 public class AuthController {
 
     private final AuthService authService;
@@ -25,7 +26,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String,String>> login(@Valid @RequestBody AuthRequest request) {
+    public ResponseEntity<Map<String, String>> login(@Valid @RequestBody AuthRequest request) {
         System.out.println("request passed in mapping");
         return authService.authenticate(request);
     }
