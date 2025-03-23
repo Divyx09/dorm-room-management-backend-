@@ -45,6 +45,10 @@ public class User implements org.springframework.security.core.userdetails.UserD
     @JsonManagedReference
     private List<Request> requests;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Task> tasks;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference
     private Prefrence preference;

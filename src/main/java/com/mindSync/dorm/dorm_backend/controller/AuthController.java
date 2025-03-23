@@ -26,7 +26,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String,String>> login(@Valid @RequestBody AuthRequest request) {
+    public ResponseEntity<Map<String, String>> login(@Valid @RequestBody AuthRequest request) {
         System.out.println("request passed in mapping");
         return authService.authenticate(request);
     }
